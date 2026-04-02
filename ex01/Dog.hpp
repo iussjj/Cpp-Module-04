@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 #include <iostream>
+#include <string>
 
 /*
 	The virtual keyword tells the compiler, "Hey, look at this
@@ -24,6 +26,8 @@
 
 class Dog : public Animal
 {
+private:
+	Brain *brain;
 public:
 	Dog();
 	Dog(const Dog &source);

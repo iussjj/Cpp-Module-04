@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 
 /*
 	The virtual keyword tells the compiler, "Hey, look at this

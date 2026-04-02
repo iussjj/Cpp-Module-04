@@ -5,6 +5,7 @@ Cat::Cat(void) : Animal()
 {
 	std::cout << "Cat constructor called" << std::endl;
 	this->type = "Cat";
+	this->brain = new Brain();
 }
 
 /*
@@ -16,12 +17,18 @@ Cat::Cat(void) : Animal()
 Cat::Cat(const Cat &source) : Animal(source)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
+	/*
+		The brain index copying logic is implemented in the brain
+		copy constructor, and does not need to be repeated here! :)
+	*/
+	this->brain = new Brain(*source.brain);
 }
 
 /*
-	Since Cat has no unique non-inherited variables, calling the
-	base class copy assignment operator works. Unique variables
-	would need to be manually copied next.
+	Inherited variables from the base class are copied with the base
+	class operator. Variables specific to child classes are copied manually,
+	or in this case with the Brain copy assignment operator. Dereference
+	both to get the object itself, not memory addresses!
 */
 
 Cat& Cat::operator=(const Cat &source)
@@ -30,7 +37,7 @@ Cat& Cat::operator=(const Cat &source)
 	if (this != &source)
 	{
 		Animal::operator=(source);
-		//this->type = source.type;
+		*this->brain = *source.brain;
 	}
 	return *this;
 }
@@ -38,6 +45,7 @@ Cat& Cat::operator=(const Cat &source)
 Cat::~Cat(void)
 {
 	std::cout << "Cat destructor called" << std::endl;
+	delete this->brain;
 }
 
 void Cat::makeSound(void) const

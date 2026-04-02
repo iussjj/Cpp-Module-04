@@ -5,6 +5,7 @@ Dog::Dog(void) : Animal()
 {
 	std::cout << "Dog constructor called" << std::endl;
 	this->type = "Dog";
+	this->brain = new Brain();
 }
 
 /*
@@ -16,12 +17,18 @@ Dog::Dog(void) : Animal()
 Dog::Dog(const Dog &source) : Animal(source)
 {
 	std::cout << "Dog copy constructor called" << std::endl;
+	/*
+		The brain index copying logic is implemented in the brain
+		copy constructor, and does not need to be repeated here! :)
+	*/
+	this->brain = new Brain(*source.brain);
 }
 
 /*
-	Since Dog has no unique non-inherited variables, calling the
-	base class copy assignment operator works. Unique variables
-	would need to be manually copied next.
+	Inherited variables from the base class are copied with the base
+	class operator. Variables specific to child classes are copied manually,
+	or in this case with the Brain copy assignment operator. Dereference
+	both to get the object itself, not memory addresses!
 */
 
 Dog& Dog::operator=(const Dog &source)
@@ -30,7 +37,7 @@ Dog& Dog::operator=(const Dog &source)
 	if (this != &source)
 	{
 		Animal::operator=(source);
-		//this->type = source.type;
+		*this->brain = *source.brain;
 	}
 	return *this;
 }
@@ -38,6 +45,7 @@ Dog& Dog::operator=(const Dog &source)
 Dog::~Dog(void)
 {
 	std::cout << "Dog destructor called" << std::endl;
+	delete this->brain;
 }
 
 void Dog::makeSound(void) const
