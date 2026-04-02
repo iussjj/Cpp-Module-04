@@ -20,6 +20,15 @@ int main()
 					<< " says ";
 		animals[i]->makeSound();
 	}
-	delete animals;
+	for (int i = 0; i < 10; i++)
+	{
+		delete animals[i];
+	}
+
+/*
+		! TO DO: Implement check to make sure copied instances
+		! are deep copies and not shallow!
+*/
+
 	return 0;
 }
