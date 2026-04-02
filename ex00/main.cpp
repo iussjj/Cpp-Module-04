@@ -1,6 +1,8 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 #include <iostream>
 
 int main()
@@ -16,5 +18,21 @@ int main()
 	delete meta;
 	delete j;
 	delete i;
+	std::cout << "Wrong animal tests:" << std::endl;
+	const WrongAnimal* shub_niggurath = new WrongAnimal();
+	const WrongAnimal* garfield = new WrongCat();
+	std::cout << shub_niggurath->getType() << " " << std::endl;
+	std::cout << garfield->getType() << " " << std::endl;
+	shub_niggurath->makeSound();
+	garfield->makeSound();
+	/*
+		If the WrongAnimal destructor was non-virtual, the following
+		delete statement would cause undefined behavior and a possible
+		partial memory leak, since only the base class part of the object
+		would be deleted. With a virtual destructor, the base and child
+		parts are deleted.
+	*/
+	delete shub_niggurath;
+	delete garfield;
 	return 0;
 }

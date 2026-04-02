@@ -28,9 +28,14 @@ public:
 	WrongCat();
 	WrongCat(const WrongCat &source);
 	WrongCat &operator=(const WrongCat &source);
-	//intentionally broken polymorphism: removed override keywords
-	~WrongCat();
+	~WrongCat() override;
 
-//	Need to be const to work with const WrongCat objects!
+/*	
+	intentionally broken polymorphism: removed override keyword
+	from makeSound, but kept for destructor to avoid undefined
+	behavior when deleting object
+	
+	-Needs to be const to work with const WrongCat objects!
+*/
 	void			makeSound(void) const;
 };

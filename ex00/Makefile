@@ -6,9 +6,9 @@ CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++20
 
 # Source files and Object files
-SRCS		= main.cpp Animal.cpp Dog.cpp Cat.cpp
+SRCS		= main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 OBJS		= $(SRCS:.cpp=.o)
-HEADERS		= Animal.hpp Dog.hpp Cat.hpp
+HEADERS		= Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
 
 # Rules
 all: $(NAME)

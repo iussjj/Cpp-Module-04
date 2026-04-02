@@ -3,8 +3,11 @@
 #include <iostream>
 
 /*
-	The virtual keyword tells the compiler, "Hey, look at this
+	The virtual keyword tells the compiler, "Look at this
 	object at runtime and figure out what its true type is."
+
+	Methods that are set to virtual here need to be overriden
+	in the child class definition, using the keyword 'override'
 
 	! Constructors are NEVER virtual
 	! Copy assignment operator can, but SHOULD NEVER be
@@ -24,13 +27,13 @@ public:
 	WrongAnimal();
 	WrongAnimal(const WrongAnimal &source);
 	WrongAnimal &operator=(const WrongAnimal &source);
-	~WrongAnimal();
+	virtual ~WrongAnimal();
 
 /*
-	Intentionally broken polymorphism: no virtual keywords!
-	This will bind all base class pointer objects to use
-	base class functions, so a WrongCat will still output
-	the WrongAnimal sound!
+	Intentionally broken polymorphism: no virtual keyword
+	for makeSound()! This will bind all base class pointer
+	objects to use base class functions, so a WrongCat will
+	still output the WrongAnimal sound!
 */
 	std::string		getType(void) const;
 	void			makeSound(void) const;
