@@ -35,5 +35,6 @@ public:
 	~Cat() override;
 
 //	Need to be const to work with const Cat objects!
-	void			makeSound(void) const override;
+	void	makeSound(void) const override;
+	Brain*	getBrain(void) const;
 };

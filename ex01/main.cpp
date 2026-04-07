@@ -25,10 +25,28 @@ int main()
 		delete animals[i];
 	}
 
-/*
-		! TO DO: Implement check to make sure copied instances
-		! are deep copies and not shallow!
-*/
-
+	std::cout << "\nDEEP COPY TESTS:\n" << std::endl;
+	std::cout << "CREATING ORIGINAL DOG:" << std::endl;
+	Dog	originalDog;
+	/*
+		If tmp would be a shallow copy, it wouldn't have a separate
+		brain from originalDog, and closing the scope block would
+		delete originalDog's brain too. This would trigger a double
+		free error once main has completed and originalDog is cleaned up.
+	*/
+	{
+		std::cout << "\nCREATING COPY DOG:" << std::endl;
+		Dog copy = originalDog;
+		std::cout << "\nDELETING COPY DOG:" << std::endl;
+	} 
+	std::cout << "\nCHECKING ORIGINAL DOG'S BRAIN:" << std::endl;
+	originalDog.getBrain()->setIdea(0, "I'm hungry!\n");
+	std::cout << originalDog.getBrain()->getIdea(0) << std::endl;
+	/*
+		If the copy had been shallow, originalDog's brain would have
+		been deleted and trying to access it would have caused a 
+		segfault.
+	*/
+	std::cout << "DELETING ORIGINAL DOG:" << std::endl;
 	return 0;
 }

@@ -35,5 +35,6 @@ public:
 	~Dog() override;
 
 //	Need to be const to work with const Dog objects!
-	void			makeSound(void) const override;
+	void	makeSound(void) const override;
+	Brain*	getBrain(void) const;
 };
