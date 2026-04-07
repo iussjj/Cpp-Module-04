@@ -7,6 +7,11 @@
 
 int main()
 {
+	/*
+	std::cout << "\nABSTRACT CLASS TEST" << std::endl;
+	const Animal* abstract = new Animal(); //Will cause compiler error
+	*/
+
 	std::cout << "\nPOLYMORPHISM & ARRAY TESTS:\n" << std::endl;
 	std::cout << "POPULATING ARRAY:" << std::endl;
 	Animal* animals[10];
